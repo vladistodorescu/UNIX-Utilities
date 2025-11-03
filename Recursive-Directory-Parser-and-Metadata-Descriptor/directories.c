@@ -125,10 +125,35 @@ void parse(char *path, int fileTreeIndent) {
 }
 
 void showDetails(char *path){
-    if(isFile(path)){
-        printf("It's just a file!\n");
+    // if the Path leads to a file
+    if (isFile(path)){
+        struct stat st;
+        if (lstat(path, &st) != 0){
+            printf("Error at one of the child paths!");
+            return;
+        }
+
+        char detailsStr[128];
+        size_t used = 0;
+
+        char *modeStr = modeString(st.st_mode);
+        used += snprintf(detailsStr + used, sizeof(detailsStr) - used, "%s ", modeStr);
+
+        /* 2) links and size */
+        used += snprintf(detailsStr + used, sizeof(detailsStr) - used,
+                         "%lu %lld ",
+                         (unsigned long)st.st_nlink,
+                         (long long)st.st_size);
+
+        // filePath
+        used += snprintf(detailsStr + used, sizeof(detailsStr) - used, "%s", path);
+
+        printf("%s\n", detailsStr);
+
     }
-    if(isDir(path)){
+
+    // if the Path leads to a directory
+    if (isDir(path)){
         DIR *dir;
         struct dirent *entry;
 
@@ -138,7 +163,7 @@ void showDetails(char *path){
             return;
         }
 
-        while((entry = readdir(dir)) != NULL){
+        while ((entry = readdir(dir)) != NULL){
             char childPath[512];
             char childDetailsStr[128];
             struct stat st;
@@ -146,7 +171,7 @@ void showDetails(char *path){
             snprintf(childPath, sizeof(childPath), "%s/%s", path, entry->d_name);
 
             if (lstat(childPath, &st) != 0){
-                perror("Error at one of the child paths!");
+                printf("Error at one of the child paths!");
                 continue;
             }
 
