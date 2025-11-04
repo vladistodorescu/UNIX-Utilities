@@ -1,6 +1,6 @@
 // This program is operated through a CLI and expects 3 arguments: [executable_name] [mode] [path]
 // If mode = "parse" --> recursively go down the file tree, and print all contents, with recieved path as starting point
-// If mode = "details" --> if it's a directory, then print out all the details about the files in the directory (similar to "ls -al" command), if it's a file...
+// If mode = "details" --> if it's a directory, then print out all the details about the files in the directory (similar to "ls -al" command), if it's a file print out it's details (similar to "ls -l" command)
 
 #include <unistd.h>
 #include <sys/types.h>
