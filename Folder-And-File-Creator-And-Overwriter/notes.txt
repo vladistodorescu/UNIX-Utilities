@@ -1,0 +1,7 @@
+TASK 2
+
+Create a C application able to create folders. The folder name will be given as a command-line argument (first argument, after the executable path) at execution.-The application will compile the source code for the above exercise.
+- The application will run the executable from the previous exercise, with the same arguments as the ones received at execution.
+
+E.g: ./a.out myfolder Today is sunny
+Will result in the folder myfolder being created, containing the myfolder file. Furthermore, both the STDOUT and the myfolder/myfolder file are containing/printing Todayissunny
