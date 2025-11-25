@@ -1,0 +1,8 @@
+TASK 1
+
+Create a C application able to read and write to a given file. The filename and the content of that file will be given as cmd-line arguments at execution.
+- The application will create a subprocess that first writes to the file the received arguments.
+- The parent process will read the written file and print the information to the STDOUT.
+
+E.g: ./a.out filename Today is sunny
+Will result in both the STDOUT and file filename containing/printing Todayissunny
