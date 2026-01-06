@@ -1,0 +1,5 @@
+Dear students,
+Attached, you will find a C source file containing various ways of using some of the variants of the exec() function.
+You can use it in conjunction with the fork() function to generate new subprocesses able to execute various other commands.
+
+2. Are able to launch in execution all the commands received at execution (similar to a mini CLI/Bash).
